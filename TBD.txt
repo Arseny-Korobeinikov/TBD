@@ -1,1 +1,51 @@
-SELECT AVG(mark) FROM marks where (marks.idcr = 11)
+08.04.2024
+
+Задание 1
+SELECT AVG(mark) FROM marks where (marks.idcr = 11) --Средняя по курсу
+SELECT AVG(mark) FROM marks where (marks.idst = 16001) --Средняя у студента
+
+insert into marks 
+values
+(16001, 13, '2017-01-23', 1001, 4),
+(16001, 14, '2017-01-27', 1004, 5),
+(16001, 15, '2017-01-09', 1002, 3)
+
+insert into marks 
+values
+(16003, 12, '2017-01-20', 1005, 4),
+(16004, 12, '2017-01-20', 1005, 5),
+(16005, 12, '2017-01-20', 1005, 3)
+
+
+Задание 2
+SELECT * FROM lect WHERE salary >= (SELECT AVG(salary) FROM lect); --Большей средней по всем департаментам
+
+
+ SELECT *
+  FROM lectors AS t1
+  WHERE salary >=
+        (SELECT AVG(salary)
+          FROM lectors AS t2
+           WHERE t2.iddep = 1) AND t1.iddep = 1;
+
+--Вывод больше средней по департаменту 
+
+Задание 4
+insert into marks 
+values
+(16002, 13, '2017-01-23', 1001, 2),
+(16002, 13, '2017-02-23', 1001, 5),
+(16003, 14, '2017-01-27', 1004, 2),
+(16003, 14, '2017-02-27', 1004, 4)
+
+
+ SELECT *
+  FROM marks AS t1
+  WHERE  (t1.mark = 2 and t1.exmr = 1001 AND t1.mark = 5 AND t1.exmr = 1001) --попытка 1
+
+
+
+
+
+
+
