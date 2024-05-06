@@ -1,3 +1,7 @@
+Компьютер:
+192.168.70.6
+
+
 08.04.2024
 
 Задание 1
@@ -42,6 +46,31 @@ values
  SELECT *
   FROM marks AS t1
   WHERE  (t1.mark = 2 and t1.exmr = 1001 AND t1.mark = 5 AND t1.exmr = 1001) --попытка 1
+
+
+
+06.05.2024
+
+create Table Dml_Log_Order (
+username text,
+dml_command text,
+date_time timestamp);
+
+create or replace function Log_Dml_Ord()
+returns trigger as $$
+begin
+Insert into dml_log_Order
+(usernem, dml_command, date_time)
+values
+(current_user, current_query(), current_timestamp);
+return NULL;
+end $$ language plpgsql;
+
+
+create trigger Tr_Log_Ord_Dml
+AFTER INSERT OR UPDATE OR DELETE ON lectors
+EXECUTE FUNCTION Log_Dml_Ord();
+
 
 
 
